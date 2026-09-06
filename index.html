@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Para você 💗</title>
+<title>I Love You ❤️</title>
 
 <style>
 * {
@@ -14,14 +14,17 @@
 }
 
 body {
-    background: #000;
-    color: white;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: #000;
     font-family: Arial, sans-serif;
 }
 
-/* Tela inicial */
+/* =========================
+   TELA INICIAL
+========================= */
+
 #inicio {
     position: fixed;
     inset: 0;
@@ -30,156 +33,323 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    transition: opacity 1s;
+    z-index: 100;
+    transition: opacity 1s ease;
 }
 
 #inicio h1 {
     color: #ff8fab;
-    font-size: 30px;
-    margin-bottom: 25px;
+    font-size: 28px;
     text-align: center;
-    text-shadow: 0 0 15px #ff4f81;
+    margin-bottom: 25px;
+    text-shadow:
+        0 0 10px #ff4f81,
+        0 0 25px #ff4f81;
 }
 
-button {
+#botao {
     border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
     background: #ff4f81;
     color: white;
-    padding: 14px 30px;
-    border-radius: 30px;
     font-size: 18px;
     cursor: pointer;
-    box-shadow: 0 0 20px #ff4f81;
-    transition: .3s;
+
+    box-shadow:
+        0 0 10px #ff4f81,
+        0 0 30px #ff4f81;
+
+    animation: botaoPulse 1.5s infinite;
 }
 
-button:hover {
-    transform: scale(1.08);
+@keyframes botaoPulse {
+    50% {
+        transform: scale(1.08);
+    }
 }
 
-/* Conteúdo */
+
+/* =========================
+   ÁREA PRINCIPAL
+========================= */
+
 #conteudo {
     width: 100%;
     height: 100%;
     display: none;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-/* Coração */
-.heart {
     position: relative;
-    width: 600px;
-    height: 520px;
-    animation: heartbeat 1.5s infinite;
 }
 
-/* Frases */
-.text {
-    position: absolute;
-    color: #ff9fba;
-    font-size: 15px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-shadow:
-        0 0 5px #ff4f81,
-        0 0 10px #ff4f81,
-        0 0 18px #ff4f81;
+
+/* =========================
+   CORAÇÃO
+========================= */
+
+#heart {
+    position: relative;
+    width: 700px;
+    height: 600px;
+
+    animation:
+        heartPulse 1.4s infinite ease-in-out,
+        heartRotate 8s infinite linear;
+
+    filter:
+        drop-shadow(0 0 10px #ff4f81)
+        drop-shadow(0 0 25px #ff4f81);
 }
 
-/* Pulso */
-@keyframes heartbeat {
+@keyframes heartPulse {
+
     0%, 100% {
         transform: scale(1);
     }
 
     50% {
-        transform: scale(1.045);
+        transform: scale(1.07);
     }
 }
 
-/* Mensagem */
-#mensagem {
+@keyframes heartRotate {
+
+    0% {
+        rotate: 0deg;
+    }
+
+    50% {
+        rotate: 2deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
+
+
+/* =========================
+   TEXTOS
+========================= */
+
+.text {
     position: absolute;
-    bottom: 8%;
+
+    color: #ff9fba;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 5px #ff4f81,
+        0 0 10px #ff4f81,
+        0 0 20px #ff4f81;
+
+    transform-origin: center;
+
+    animation:
+        textGlow 1.2s infinite alternate;
+}
+
+@keyframes textGlow {
+
+    from {
+        opacity: .55;
+        text-shadow:
+            0 0 4px #ff4f81;
+    }
+
+    to {
+        opacity: 1;
+        text-shadow:
+            0 0 8px #ff4f81,
+            0 0 20px #ff4f81;
+    }
+}
+
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+.particle {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ff8fab;
+
+    box-shadow:
+        0 0 8px #ff4f81,
+        0 0 15px #ff4f81;
+
+    pointer-events: none;
+
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+#mensagem {
+
+    position: absolute;
+
+    bottom: 7%;
+
     width: 90%;
+
     text-align: center;
-    color: #fff;
+
+    color: white;
+
     font-size: 22px;
+
     opacity: 0;
-    animation: aparecer 3s forwards;
+
+    text-shadow:
+        0 0 10px #ff4f81,
+        0 0 20px #ff4f81;
+
+    animation:
+        aparecer 2s forwards;
+
     animation-delay: 2s;
-    text-shadow: 0 0 10px #ff4f81;
 }
 
 @keyframes aparecer {
+
     to {
         opacity: 1;
     }
 }
 
-/* Celular */
-@media (max-width: 600px) {
 
-    .heart {
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 700px) {
+
+    #heart {
         transform: scale(.58);
+    }
+
+    #inicio h1 {
+        font-size: 23px;
+        padding: 20px;
     }
 
     #mensagem {
         font-size: 18px;
-        bottom: 7%;
-    }
-
-    #inicio h1 {
-        font-size: 25px;
-        padding: 20px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- Tela inicial -->
+
+<!-- =========================
+     TELA INICIAL
+========================= -->
+
 <div id="inicio">
 
     <h1>
-        Tenho uma coisa para te mostrar... 💗
+        Tenho uma surpresa para você ❤️
     </h1>
 
-    <button onclick="abrir()">
-        Clique aqui ❤️
+    <button id="botao" onclick="abrir()">
+        Clique aqui 💗
     </button>
 
 </div>
 
 
-<!-- Página principal -->
+<!-- =========================
+     CONTEÚDO
+========================= -->
+
 <div id="conteudo">
 
-    <div class="heart" id="heart"></div>
+    <div id="heart"></div>
 
     <div id="mensagem">
-        Feito especialmente para você. 💗
+        I Love You ❤️
     </div>
 
 </div>
 
 
+<!-- =========================
+     MÚSICA
+========================= -->
+
+<audio id="musica" loop>
+
+    <source src="musica.mp3" type="audio/mpeg">
+
+</audio>
+
+
 <script>
 
-const heart = document.getElementById("heart");
+/* =========================
+   CONFIGURAÇÕES
+========================= */
 
-/*
-    Equação matemática do coração
-*/
-const quantidade = 150;
+const heart =
+    document.getElementById("heart");
+
+const quantidade = 180;
+
+
+/* =========================
+   CRIA O CORAÇÃO
+========================= */
 
 for (let i = 0; i < quantidade; i++) {
 
-    const t = (Math.PI * 2 * i) / quantidade;
+    /*
+        Ângulo do ponto
+    */
+
+    const t =
+        (Math.PI * 2 * i) / quantidade;
+
+
+    /*
+        Fórmula matemática
+        do coração
+    */
 
     const x =
         16 * Math.pow(Math.sin(t), 3);
@@ -190,34 +360,86 @@ for (let i = 0; i < quantidade; i++) {
         - 2 * Math.cos(3 * t)
         - Math.cos(4 * t);
 
-    const texto = document.createElement("div");
+
+    /*
+        Cria o texto
+    */
+
+    const texto =
+        document.createElement("div");
 
     texto.className = "text";
 
-    texto.innerText = "I Love You";
+    texto.innerText =
+        "I Love You";
+
 
     /*
-        Posicionamento do texto
+        Posição
     */
+
     texto.style.left =
-        `${300 + x * 16}px`;
+        `${350 + x * 17}px`;
 
     texto.style.top =
-        `${255 - y * 16}px`;
+        `${300 - y * 17}px`;
+
 
     /*
-        Pequena variação no tamanho
+        Tamanho aleatório
     */
+
     texto.style.fontSize =
-        `${13 + Math.random() * 5}px`;
+        `${12 + Math.random() * 6}px`;
+
+
+    /*
+        Pequeno atraso na animação
+    */
+
+    texto.style.animationDelay =
+        `${Math.random() * 1.5}s`;
+
+
+    /*
+        Adiciona ao coração
+    */
 
     heart.appendChild(texto);
+
 }
 
 
-/*
-    Abre a página
-*/
+/* =========================
+   PARTÍCULAS
+========================= */
+
+for (let i = 0; i < 40; i++) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "vw";
+
+    particle.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    particle.style.animationDuration =
+        3 + Math.random() * 5 + "s";
+
+    document.body.appendChild(particle);
+
+}
+
+
+/* =========================
+   ABRIR
+========================= */
+
 function abrir() {
 
     const inicio =
@@ -226,18 +448,39 @@ function abrir() {
     const conteudo =
         document.getElementById("conteudo");
 
+    const musica =
+        document.getElementById("musica");
+
+
+    /*
+        Começa a música
+    */
+
+    musica.play().catch(() => {
+        console.log("O navegador bloqueou o áudio.");
+    });
+
+
+    /*
+        Esconde a tela inicial
+    */
+
     inicio.style.opacity = "0";
+
 
     setTimeout(() => {
 
-        inicio.style.display = "none";
+        inicio.style.display =
+            "none";
 
-        conteudo.style.display = "flex";
+        conteudo.style.display =
+            "flex";
 
     }, 1000);
+
 }
 
 </script>
 
 </body>
-  </html>
+</html>
